@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= title 
+  p Welcome to #{title}
+  button(type="button", class="btn btn-success", onclick="double()") I am a Button
+  div(id="double") Up the amount
+
+  
+  script.
+    var value = 0;
+    var power = 1;
+    function double() {
+      value++;
+      power *= 2;
+      document.getElementById("double").innerText = "Two to the power " + value + " is " + power;
+    }
+
+    //- //hyperlink
+    //- a(href="/city")view more cities 

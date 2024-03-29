@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  - var image_names = ['dhl.jpg', 'EU.jpg', 'nyc.jpg', 'syd.jpg', 'tky.jpg']
+  - var height = 200
+  - var width = 200
+  - var displayedImages = []
+  while displayedImages.length < 3
+    - var randomIndex = Math.floor(Math.random() * 5)
+    - var randomImage = image_names[randomIndex]
+    - if (!displayedImages.includes(randomImage))
+      - displayedImages.push(randomImage)
+      img(
+        src=`/images/${randomImage}`,
+        alt=`${randomImage}`,
+        height=height,
+        width=width
+      )

@@ -1,0 +1,34 @@
+//- extends layout
+
+//- block content
+//-   h1= title 
+//-   -
+//-   .container-fluid
+//-   .row
+
+//-   - let cities = [{ name: 'New York', country: 'USA', population: 8398748 },{ name: 'London', country: 'UK', population: 8908081 },{ name: 'Tokyo', country: 'Japan', population: 37393129 }]
+    
+//-   div(class="container-fluid")
+//-     div(class="row")
+//-       each item, index in results  
+//-         div(class="col-sm-2",onclick=buy(${index}))
+//-           p Name: #{item.name}
+//-           p Country: #{city.country}
+//-           p Population: #{city.population}
+extends layout
+block content
+  h1= title
+  - let results = [{ name: 'New York', country: 'USA', population: 8398748 },{ name: 'London', country: 'UK', population: 8908081 },{ name: 'Tokyo', country: 'Japan', population: 37393129 }]
+  div(class="container-fluid")
+    div(class="row")
+      each item, index in results  
+        div(class="col-sm-2",onclick=`buy(${index})`)
+          p #{item.name} 
+          p #{item.country}
+          p #{item.population} 
+  
+  script.
+    function buy(index) {
+       console.log(index)
+       alert(' You purchased item ' + index);
+    }

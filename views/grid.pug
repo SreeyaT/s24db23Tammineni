@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= title
+  p No of rows - #{Number(query.rows)} No of cols - #{Number(query.cols)}
+  - let rows = Number(query.rows);
+  - let cols = Number(query.cols);
+
+  - function value(row, col) {
+    - return Math.min(row, col);
+  - }
+
+  if (!Number.isInteger(rows) || !Number.isInteger(cols) || rows < 3 || rows > 13 || cols < 3 || cols > 13)
+    p The number of rows and columns must be integers between 3 and 13.
+  else if (rows < 3 || rows > 13)
+    p The number of rows must be between 3 and 13.
+  else if (cols < 3 || cols > 13)
+    p The number of columns must be between 3 and 13.
+  else
+    p The values of rows and columns are within the acceptable range.
+    table#outer
+      - for(let i = 0; i < rows; i++)
+        tr
+          - for(let j = 0; j < cols; j++)
+            td= value(i + 1,j + 1)
