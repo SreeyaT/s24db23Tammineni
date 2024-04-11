@@ -18,7 +18,7 @@
 extends layout
 block content
   h1= title
-  - let results = [{ name: 'New York', country: 'USA', population: 8398748 },{ name: 'London', country: 'UK', population: 8908081 },{ name: 'Tokyo', country: 'Japan', population: 37393129 }]
+  - let results1= results
   div(class="container-fluid")
     div(class="row")
       each item, index in results  

@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  if (toShow == null)
+     h2 No instance to detail 
+  else   
+  - let cityid = toShow._id
+  - let city_name = toShow.name
+  - let citycountry = toShow.country
+  - let citypopulation = toShow.population
+  div
+    div.row
+      div(class='cityAttr mr-3') City ID is:
+      div #{cityid}
+    div.row
+      div(class='cityAttr mr-3') City name is:
+      div #{city_name}
+    div.row
+      div(class='cityAttr mr-3') City country is:
+      div #{citycountry}
+    div.row
+      div(class='cityAttr mr-3') City population is:
+      div #{citypopulation}

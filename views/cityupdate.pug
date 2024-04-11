@@ -1,0 +1,44 @@
+extends layout
+block content
+  h1= title
+  if (toShow == null)
+     h2 No instance to detail 
+  else  
+  - let cityid = toShow._id
+  - let city_name = toShow.name
+  - let citycountry = toShow.country
+  - let citypopulation = toShow.population
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{cityid}
+
+  - let actionid = "/resource/city/" + cityid
+  form(id='cityForm', action= actionid, method="PUT")
+    div.form-group
+      label.cityAttr(for='city_name') city name
+      input#city_name(type='text', name='city_name', value= city_name )
+    div.form-group
+      label.cityAttr(for='population') city population
+      input#population(type='number', name='population', value= citypopulation )
+    div.form-group
+      label.cityAttr(for='country') city country
+      input#country(type='text', name='country', value= citycountry )
+    input(type="submit")
+
+  script.
+    document.forms['cityForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeeded");
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error );
+      });
+    });
