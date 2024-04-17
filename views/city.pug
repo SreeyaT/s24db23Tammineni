@@ -1,37 +1,31 @@
-//- extends layout
-
-//- block content
-//-   h1= title 
-//-   -
-//-   .container-fluid
-//-   .row
-
-//-   - let cities = [{ name: 'New York', country: 'USA', population: 8398748 },{ name: 'London', country: 'UK', population: 8908081 },{ name: 'Tokyo', country: 'Japan', population: 37393129 }]
-    
-//-   div(class="container-fluid")
-//-     div(class="row")
-//-       each item, index in results  
-//-         div(class="col-sm-2",onclick=buy(${index}))
-//-           p Name: #{item.name}
-//-           p Country: #{city.country}
-//-           p Population: #{city.population}
 extends layout
 
 block content
   h1= title
-  - let items = results
+  p Welcome to #{title}
+  
+  - let create = `dispatch(\"/city/create\")`
+  button.btn(class="btn-primary ml-1", onclick= create) Create
+  
+  - let item = results
+  
   div(class="container-fluid")
     div(class="row m-1")
-      each item, index in results 
+      each item, index in results
         - let destination = `dispatch(\"/city/update?id=${item._id}\")`
-        div(class="col-sm-2",onclick=`buy(${index})`)
+        - let detail = `dispatch(\"/city/detail?id=${item._id}\")`
+        - let remove = `dispatch(\"/city/delete?id=${item._id}\")`
+        div(class="col-sm-2")
           ul
-            li #{item.name} 
+            li #{item.name}
             li #{item.country}
             li #{item.population}
-        button.btn( class="btn-primary ml-1", onclick= destination) Update
+        
+        button.btn(class="btn-primary ml-1", onclick= destination) Update
+        button.btn(class="btn-success ml-1", onclick= detail) Detail
+        button.btn(class="btn-danger ml-1", onclick= remove) Delete
+  
   script.
     function dispatch(path){
-      window.location.href=path
-      }
-
+         window.location.href=path
+    }

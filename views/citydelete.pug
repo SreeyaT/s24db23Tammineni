@@ -1,31 +1,32 @@
 extends layout
+
 block content
   h1= title
   if (toShow == null)
     h2 No instance to delete
   else
-    - let cityid = toShow._id
-    - let city_name = toShow.name
-    - let citycountry = toShow.country
-    - let citypopulation = toShow.population
-    - let actionid = "/resource/city/" + cityid
+    - let city_id = toShow._id
+    - let name = toShow.name 
+    - let country = toShow.country 
+    - let population = toShow.population 
+    - let actionid = "/resource/city/" + city_id
     script.
       let actionid = "#{actionid}"
     div
       div.row
         div(class='cityAttr mr-3') city ID is:
-        div #{cityid}
+        div #{city_id}
       div.row
-        div(class='cityAttr mr-3') city name is:
-        div #{city_name}
+        div(class='cityAttr mr-3') name is:
+        div #{name}
       div.row
-        div(class='cityAttr mr-3') city population is:
-        div #{citypopulation}
+        div(class='cityAttr mr-3') country is:
+        div #{country}
       div.row
-        div(class='cityAttr mr-3') city country is:
-        div #{citycountry}
-      button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
-      button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+        div(class='cityAttr mr-3') population is:
+        div #{population}
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
     script.
       function cancel() {
         // Go back to the home page for the city collection
